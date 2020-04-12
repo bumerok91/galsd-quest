@@ -3,12 +3,11 @@ services:
   php:
     container_name: php
     build:
-      context: ./docker/php
+      context: ./
+      dockerfile: ./docker/php/Dockerfile
     volumes:
       - ./storage:/var/www/storage
     env_file: '.env.prod'
-    environment:
-      - "DB_HOST=database"
   nginx:
     container_name: nginx
     build:

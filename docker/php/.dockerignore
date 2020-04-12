@@ -1,4 +1,3 @@
-# Created by .ignore support plugin (hsz.mobi)
 .git
 .idea
 .env
@@ -6,4 +5,3 @@ vendor
 storage/framework/cache/**
 storage/framework/sessions/**
 storage/framework/views/**
-deployment

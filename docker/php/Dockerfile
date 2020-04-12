@@ -2,7 +2,9 @@ FROM php:7.2-fpm
 
 RUN apt-get update && apt-get -y install git && apt-get -y install zip
 
-RUN cd /var/www/ && git clone https://github.com/bumerok91/galsd-quest.git
+RUN mkdir /var/www/galsd-quest
+COPY . /var/www/galsd-quest
+
 WORKDIR /var/www/galsd-quest
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
