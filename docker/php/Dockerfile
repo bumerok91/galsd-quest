@@ -12,10 +12,8 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer.phar install --no-scripts \
     && rm composer.phar
 
-COPY . /var/www
-
 RUN chown -R www-data:www-data \
-        /var/www/galsd-quest/storage
+        /var/www/galsd-quest
 
 RUN  apt-get install -y libmcrypt-dev \
         libmagickwand-dev --no-install-recommends \

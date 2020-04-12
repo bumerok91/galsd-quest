@@ -6,7 +6,7 @@ return [
     'connections' => [
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('DB_HOST', 'mysql'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'quest'),
             'username' => env('DB_USERNAME', 'user'),
