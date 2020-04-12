@@ -1,27 +1,21 @@
 FROM php:7.2-fpm
 
-WORKDIR /var/www
-
 RUN apt-get update && apt-get -y install git && apt-get -y install zip
 
-COPY composer.lock composer.json /var/www/
-
-COPY ./../../database /var/www/database
-
-RUN git clone
+RUN cd /var/www/ && git clone https://github.com/bumerok91/galsd-quest.git
+WORKDIR /var/www/galsd-quest
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-    && php -r "if (hash_file('SHA384', 'composer-setup.php') === 'a5c698ffe4b8e849a443b120cd5ba38043260d5c4023dbf93e1558871f1f07f58274fc6f4c93bcfd858c6bd0775cd8d1') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
+    && php -r "if (hash_file('SHA384', 'composer-setup.php') === 'e0012edf3e80b6978849f5eff0d4b4e4c79ff1609dd1e613307e16318854d24ae64f26d17af3ef0bf7cfb710ca74755a') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
     && php composer-setup.php \
     && php -r "unlink('composer-setup.php');" \
-    && php composer.phar install --no-dev --no-scripts \
+    && php composer.phar install --no-scripts \
     && rm composer.phar
 
 COPY . /var/www
 
 RUN chown -R www-data:www-data \
-        /var/www/storage \
-        /var/www/bootstrap/cache
+        /var/www/galsd-quest/storage
 
 RUN  apt-get install -y libmcrypt-dev \
         libmagickwand-dev --no-install-recommends \
